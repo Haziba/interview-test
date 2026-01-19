@@ -5,8 +5,8 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    rentals = @book.rentals
-    @past_rentals = rentals.select { |r| r.start_date < Date.current }
-    @future_rentals = rentals.select { |r| r.start_date >= Date.current }
+    @current_rentals = Rental.where(book: @book).where("start_date <= ?", Date.current).where("end_date >= ?", Date.current)
+    @past_rentals = Rental.where(book: @book).where("end_date <= ?", Date.current)
+    @future_rentals = Rental.where(book: @book).where("start_date > ?", Date.current)
   end
 end

@@ -133,6 +133,13 @@ Rental.find_or_create_by!(user: interviewee, book: little_men) do |rental|
   rental.end_date = 2.days.ago.to_date
 end
 
+# Current rental
+# Harry's current rental
+Rental.find_or_create_by!(user: harry, book: supernatural_tales) do |rental|
+  rental.start_date = 3.days.ago.to_date
+  rental.end_date = 3.days.from_now.to_date
+end
+
 # Future rentals
 # Harry's upcoming rentals
 Rental.find_or_create_by!(user: harry, book: best_known_eliot) do |rental|
@@ -140,7 +147,7 @@ Rental.find_or_create_by!(user: harry, book: best_known_eliot) do |rental|
   rental.end_date = 10.days.from_now.to_date
 end
 
-Rental.find_or_create_by!(user: harry, book: supernatural_tales) do |rental|
+Rental.find_or_create_by!(user: harry, book: jekyll_hyde) do |rental|
   rental.start_date = 7.days.from_now.to_date
   rental.end_date = 12.days.from_now.to_date
 end

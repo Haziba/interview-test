@@ -15,6 +15,58 @@
       <p class="text-lg text-base-content/70 mt-2"><%= @user.email %></p>
 
       <div class="mt-8">
+        <h2 class="text-2xl font-bold mb-4">Current Rentals</h2>
+        <% if @current_rentals.any? %>
+          <div class="overflow-x-auto">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Book</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Duration</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @current_rentals.each do |rental| %>
+                  <tr>
+                    <td>
+                      <div class="flex items-center gap-3">
+                        <div class="avatar">
+                          <div class="w-12 h-16 rounded">
+                            <% if rental.book.cover_image.attached? %>
+                              <%= image_tag rental.book.cover_image, alt: rental.book.title, class: "object-cover" %>
+                            <% else %>
+                              <div class="bg-base-300 h-full w-full flex items-center justify-center">
+                                <span class="text-xs">No cover</span>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                        <div>
+                          <%= link_to rental.book.title, book_path(rental.book), class: "font-bold link link-hover" %>
+                          <div class="text-sm opacity-50">by <%= rental.book.author.name %></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><%= rental.start_date&.strftime("%B %d, %Y") %></td>
+                    <td><%= rental.end_date&.strftime("%B %d, %Y") %></td>
+                    <td>
+                      <% if rental.start_date && rental.end_date %>
+                        <%= (rental.end_date - rental.start_date).to_i %> days
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% else %>
+          <p class="text-base-content/50">No current rentals.</p>
+        <% end %>
+      </div>
+
+      <div class="mt-8">
         <h2 class="text-2xl font-bold mb-4">Future Rentals</h2>
         <% if @future_rentals.any? %>
           <div class="overflow-x-auto">
