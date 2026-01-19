@@ -27,6 +27,14 @@
   </head>
 
   <body>
+    <header class="navbar bg-base-100 shadow-sm">
+      <div class="max-w-2xl mx-auto w-full">
+        <%= link_to root_path, class: "flex items-center gap-2" do %>
+          <img src="/icon.png" alt="Test Library" class="w-8 h-8">
+          <span class="text-xl font-bold">Test Library</span>
+        <% end %>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>
