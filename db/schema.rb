@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_19_172114) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_19_173550) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -40,11 +40,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_19_172114) do
   end
 
   create_table "authors", force: :cascade do |t|
-    t.integer "books_id", null: false
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
-    t.index ["books_id"], name: "index_authors_on_books_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -74,7 +72,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_19_172114) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "authors", "books", column: "books_id"
   add_foreign_key "books", "authors"
   add_foreign_key "rentals", "books"
   add_foreign_key "rentals", "users"
