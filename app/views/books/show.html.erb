@@ -1,0 +1,73 @@
+<div class="container mx-auto p-6">
+  <div class="flex flex-col lg:flex-row gap-8">
+    <div class="lg:w-1/3">
+      <% if @book.cover_image.attached? %>
+        <%= image_tag @book.cover_image, alt: @book.title, class: "rounded-lg shadow-xl w-full" %>
+      <% else %>
+        <div class="bg-base-300 h-96 w-full rounded-lg flex items-center justify-center">
+          <span class="text-base-content/50">No cover image</span>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="lg:w-2/3">
+      <h1 class="text-3xl font-bold"><%= @book.title %></h1>
+      <p class="text-lg text-base-content/70 mt-2">by <%= @book.author.name %></p>
+      <% if @book.description.present? %>
+        <p class="mt-4"><%= @book.description %></p>
+      <% end %>
+
+      <div class="mt-8">
+        <h2 class="text-2xl font-bold mb-4">Rental History</h2>
+        <% if @rentals.any? %>
+          <div class="overflow-x-auto">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Duration</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @rentals.each do |rental| %>
+                  <tr>
+                    <td>
+                      <div class="flex items-center gap-3">
+                        <div class="avatar">
+                          <div class="mask mask-squircle h-12 w-12">
+                            <% if rental.user.profile_image.attached? %>
+                              <%= image_tag rental.user.profile_image, alt: rental.user.name %>
+                            <% else %>
+                              <div class="bg-base-300 h-full w-full flex items-center justify-center">
+                                <span class="text-xs"><%= rental.user.name&.first || "?" %></span>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="font-bold"><%= rental.user.name %></div>
+                          <div class="text-sm opacity-50"><%= rental.user.email %></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><%= rental.start_date&.strftime("%B %d, %Y") %></td>
+                    <td><%= rental.end_date&.strftime("%B %d, %Y") %></td>
+                    <td>
+                      <% if rental.start_date && rental.end_date %>
+                        <%= (rental.end_date - rental.start_date).to_i %> days
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% else %>
+          <p class="text-base-content/50">No rentals yet.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
