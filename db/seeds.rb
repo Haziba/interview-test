@@ -35,48 +35,57 @@ louisa_may_alcott = Author.find_or_create_by!(name: "Louisa May Alcott")
 # Books - George Eliot
 middlemarch = Book.find_or_create_by!(title: "Middlemarch") do |book|
   book.author = george_eliot
+  book.genre = "Fiction"
 end
 attach_cover(middlemarch, "Middlemarch.png")
 
 felix_holt = Book.find_or_create_by!(title: "Felix Holt, The Radical") do |book|
   book.author = george_eliot
+  book.genre = "Fiction"
 end
 attach_cover(felix_holt, "Felix Holt, The Radical.jpg")
 
 best_known_eliot = Book.find_or_create_by!(title: "The Best-Known Novels of George Eliot") do |book|
   book.author = george_eliot
+  book.genre = "Anthology"
 end
 attach_cover(best_known_eliot, "The Best-Known Novels of George Eliot.jpg")
 
 # Books - Robert Louis Stevenson
 jekyll_hyde = Book.find_or_create_by!(title: "The Strange Case of Dr Jekyll and Mr Hyde") do |book|
   book.author = robert_louis_stevenson
+  book.genre = "Gothic"
 end
 attach_cover(jekyll_hyde, "The Strange Case of Dr Jekyll and Mr Hyde.png")
 
 treasure_island = Book.find_or_create_by!(title: "Treasure Island") do |book|
   book.author = robert_louis_stevenson
+  book.genre = "Adventure"
 end
 attach_cover(treasure_island, "Treasure Island.jpg")
 
 supernatural_tales = Book.find_or_create_by!(title: "Supernatural Tales") do |book|
   book.author = robert_louis_stevenson
+  book.genre = "Gothic"
 end
 attach_cover(supernatural_tales, "Supernatural Tales.jpg")
 
 # Books - Louisa May Alcott
 little_women = Book.find_or_create_by!(title: "Little Women") do |book|
   book.author = louisa_may_alcott
+  book.genre = "Fiction"
 end
 attach_cover(little_women, "Little Women.png")
 
 little_men = Book.find_or_create_by!(title: "Little Men") do |book|
   book.author = louisa_may_alcott
+  book.genre = "Fiction"
 end
 attach_cover(little_men, "Little Men.webp")
 
 complete_alcott = Book.find_or_create_by!(title: "The Complete Works of Louisa May Alcott") do |book|
   book.author = louisa_may_alcott
+  book.genre = "Anthology"
 end
 attach_cover(complete_alcott, "The Complete Works of Louisa May Alcott.jpg")
 

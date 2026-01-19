@@ -13,6 +13,9 @@
     <div class="lg:w-2/3">
       <h1 class="text-3xl font-bold"><%= @book.title %></h1>
       <p class="text-lg text-base-content/70 mt-2">by <%= @book.author.name %></p>
+      <% if @book.genre.present? %>
+        <span class="badge mt-2"><%= @book.genre %></span>
+      <% end %>
       <% if @book.description.present? %>
         <p class="mt-4"><%= @book.description %></p>
       <% end %>

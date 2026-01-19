@@ -1,4 +1,4 @@
-<div class="container mx-auto p-6">
+<div class="max-w-2xl mx-auto p-6">
   <h1 class="text-3xl font-bold mb-6">Books</h1>
 
   <ul class="list bg-base-100 rounded-box shadow-xl">
@@ -20,6 +20,9 @@
             <div>
               <div class="font-bold"><%= book.title %></div>
               <div class="text-sm text-base-content/70">by <%= book.author.name %></div>
+              <% if book.genre.present? %>
+                <span class="badge badge-sm mt-1"><%= book.genre %></span>
+              <% end %>
             </div>
           </div>
         <% end %>
