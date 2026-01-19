@@ -90,3 +90,36 @@ interviewee = User.find_or_create_by!(email: "interviewee@example.com") do |user
   user.name = "Interviewee"
 end
 attach_profile(interviewee, "Interviewee.webp")
+
+# Rentals - historical rentals from the last 2 weeks
+# Harry's rentals
+Rental.find_or_create_by!(user: harry, book: middlemarch) do |rental|
+  rental.start_date = 12.days.ago.to_date
+  rental.end_date = 7.days.ago.to_date
+end
+
+Rental.find_or_create_by!(user: harry, book: treasure_island) do |rental|
+  rental.start_date = 9.days.ago.to_date
+  rental.end_date = 4.days.ago.to_date
+end
+
+Rental.find_or_create_by!(user: harry, book: little_women) do |rental|
+  rental.start_date = 5.days.ago.to_date
+  rental.end_date = 1.day.ago.to_date
+end
+
+# Interviewee's rentals
+Rental.find_or_create_by!(user: interviewee, book: jekyll_hyde) do |rental|
+  rental.start_date = 14.days.ago.to_date
+  rental.end_date = 8.days.ago.to_date
+end
+
+Rental.find_or_create_by!(user: interviewee, book: felix_holt) do |rental|
+  rental.start_date = 10.days.ago.to_date
+  rental.end_date = 3.days.ago.to_date
+end
+
+Rental.find_or_create_by!(user: interviewee, book: little_men) do |rental|
+  rental.start_date = 6.days.ago.to_date
+  rental.end_date = 2.days.ago.to_date
+end
