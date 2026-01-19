@@ -1,10 +1,12 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.includes(:author).with_attached_cover_image
+    @books = Book.all
   end
 
   def show
     @book = Book.find(params[:id])
-    @rentals = @book.rentals.includes(:user)
+    rentals = @book.rentals
+    @past_rentals = rentals.select { |r| r.start_date < Date.current }
+    @future_rentals = rentals.select { |r| r.start_date >= Date.current }
   end
 end
